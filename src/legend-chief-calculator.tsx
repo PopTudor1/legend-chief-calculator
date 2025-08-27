@@ -1,4 +1,13 @@
 import { useState } from "react";
+import abyssalChasmKeyImage from "./assets/abyssal-chasm-key.png";
+import adamantKeyimage from "./assets/adamant-key.png";
+import ancientRuinsKeyImage from "./assets/ancient-key.png";
+import dailyDungeonKeyImage from "./assets/daily-dungeon-key.png";
+import devastatedForestKeyImage from "./assets/devastated-forest-key.png";
+import diamondsImage from "./assets/diamonds.png";
+import dragonKeyImage from "./assets/dragon-key.png";
+import goblinKeyImage from "./assets/goblin-key.png";
+import pathOfDeathKeyImage from "./assets/path-of-death-key.png";
 import "./legend-chief-calculator.css";
 
 type InputData = {
@@ -27,15 +36,45 @@ export default function LegendChiefCalculator() {
   });
 
   const fields = [
-    { label: "Goblin Keys", name: "goblin", points: 1 },
-    { label: "Adamant Keys", name: "adamant", points: 1 },
-    { label: "Dragon Keys", name: "dragon", points: 2 },
-    { label: "Ancient Ruins", name: "ancient", points: 3 },
-    { label: "Daily Dungeon", name: "dailyDungeon", points: 3 },
-    { label: "Devastated Forest", name: "forest", points: 4 },
-    { label: "Abyssal Chasm", name: "abyss", points: 5 },
-    { label: "Path of Death", name: "path", points: 5 },
-    { label: "Diamonds", name: "diamonds", points: 1 }, // special handling (100 = 1pt)
+    { label: "Goblin Keys", name: "goblin", points: 1, image: goblinKeyImage },
+    {
+      label: "Adamant Keys",
+      name: "adamant",
+      points: 1,
+      image: adamantKeyimage,
+    },
+    { label: "Dragon Keys", name: "dragon", points: 2, image: dragonKeyImage },
+    {
+      label: "Ancient Ruins",
+      name: "ancient",
+      points: 3,
+      image: ancientRuinsKeyImage,
+    },
+    {
+      label: "Daily Dungeon",
+      name: "dailyDungeon",
+      points: 3,
+      image: dailyDungeonKeyImage,
+    },
+    {
+      label: "Devastated Forest",
+      name: "forest",
+      points: 4,
+      image: devastatedForestKeyImage,
+    },
+    {
+      label: "Abyssal Chasm",
+      name: "abyss",
+      points: 5,
+      image: abyssalChasmKeyImage,
+    },
+    {
+      label: "Path of Death",
+      name: "path",
+      points: 5,
+      image: pathOfDeathKeyImage,
+    },
+    { label: "Diamonds", name: "diamonds", points: 1, image: diamondsImage }, // special handling (100 = 1pt)
   ] as const;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,7 +132,14 @@ export default function LegendChiefCalculator() {
 
           return (
             <div key={field.name} className="row">
-              <label className="row-label">{field.label}: </label>
+              <div className="row-label-container">
+                <img
+                  src={field.image}
+                  alt="key/diamond image"
+                  className="key-image"
+                />
+                <label className="row-label">{field.label}: </label>
+              </div>
               <input
                 id={field.name}
                 name={field.name}
